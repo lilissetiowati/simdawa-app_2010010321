@@ -1,63 +1,61 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class JenisModel extends CI_Model
+class ProdiModel extends CI_Model
 {
 
-    private $tabel = "jenis_beasiswa";
+    private $tabel = "prodi";
 
-    public function get_jenis()
+    public function get_prodi()
     {
 
         return $this->db->get($this->tabel)->result();
     }
-    public function insert_jenis()
+    public function insert_prodi()
     {
         $data = [
-            'nama_jenis' => $this->input->post('nama_jenis'),
-            'keterangan' => $this->input->post('keterangan')
+            'nama_prodi' => $this->input->post('nama_prodi')
         ];
         $this->db->insert($this->tabel, $data);
         if ($this->db->affected_rows() > 0) {
-            $this->session->set_flashdata('pesan', "Data Jenis Beasiswa berhasil ditambahkan!");
+            $this->session->set_flashdata('pesan', "Data Program Studi berhasil ditambahkan!");
             $this->session->set_flashdata('status', true);
         } else {
-            $this->session->set_flashdata('pesan', "Data Jenis Beasiswa gagal ditambahkan!");
+            $this->session->set_flashdata('pesan', "Data Program Studi gagal ditambahkan!");
             $this->session->set_flashdata('status', false);
         }
     }
 
-    public function get_jenis_byid($id)
+    public function get_prodi_byid($id)
     {
         return $this->db->get_where($this->tabel, ['id' => $id])->row();
     }
 
-    public function update_jenis()
+    public function update_prodi()
     {
         $data = [
-            'nama_jenis' => $this->input->post('nama_jenis'),
-            'keterangan' => $this->input->post('keterangan')
+            'nama_prodi' => $this->input->post('nama_prodi')
         ];
         $this->db->where('id', $this->input->post('id'));
         $this->db->update($this->tabel, $data);
         if ($this->db->affected_rows() > 0) {
-            $this->session->set_flashdata('pesan', "Data Jenis Beasiswa berhasil diubah!");
+            $this->session->set_flashdata('pesan', "Data Program Studi berhasil diubah!");
             $this->session->set_flashdata('status', true);
         } else {
-            $this->session->set_flashdata('pesan', "Data Jenis Beasiswa gagal diubah!");
+            $this->session->set_flashdata('pesan', "Data Program Studi gagal diubah!");
             $this->session->set_flashdata('status', false);
         }
     }
 
-    public function delete_jenis($id)
+    public function delete_prodi($id)
     {
         $this->db->where('id', $id);
         $this->db->delete($this->tabel);
         if ($this->db->affected_rows() > 0) {
-            $this->session->set_flashdata('pesan', "Data Jenis Beasiswa berhasil dihapus!");
+            $this->session->set_flashdata('pesan', "Data Program Studi berhasil dihapus!");
             $this->session->set_flashdata('status', true);
         } else {
-            $this->session->set_flashdata('pesan', "Data Jenis Beasiswa gagal dihapus!");
+            $this->session->set_flashdata('pesan', "Data Program Studi gagal dihapus!");
             $this->session->set_flashdata('status', false);
         }
     }
